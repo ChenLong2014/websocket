@@ -13,16 +13,15 @@ public class TextPartialHandler implements MessageHandler.Partial<String>{
   @Override
   public void onMessage(String messagePart, boolean last) {
      sb.append(messagePart);
-		 msID ++;
-		 if (last) {
-				frontend.getBasicRemote().sendText(sb.toString());
-				sb = new StringBuilder();
-			}
+     if (last) {
+	frontend.getBasicRemote().sendText(sb.toString());
+	sb = new StringBuilder();
+     }
   }
 }
 
 /**
-* the session will call 
-*
+* the session will call Partial handler to process the MessagePart.
+* So we should not use onMessage func, in ENDPOINT
 *
 /
